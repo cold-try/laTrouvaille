@@ -38,6 +38,18 @@ class Article(models.Model):
     sixth_picture = models.ImageField(_("sixth_picture"), upload_to=upload_to, null=True, blank=True)
     sixth_description = models.TextField(null=True, blank=True)
     features = models.TextField()
+    # ---------------------------------------------------------------------- #
+    our_selection_panel = models.BooleanField(default=False)
+    best_of_year = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nom
+
+class Commentaire(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    author = models.CharField(max_length=300)
+    commentary = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    email = models.CharField(max_length=100, null=True, blank=True)
+    website = models.CharField(max_length=300, null=True, blank=True)
+    

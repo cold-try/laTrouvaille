@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from core.models import Article, Categorie
+from core.models import Article, Categorie, Commentaire
 
 
 class CategorieSerializer(serializers.ModelSerializer):
@@ -18,4 +18,10 @@ class ArticlerSerializer(serializers.ModelSerializer):
 class CategorieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categorie
+        fields = "__all__"
+
+
+class CommentarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Commentaire
         fields = "__all__"
