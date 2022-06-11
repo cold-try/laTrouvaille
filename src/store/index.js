@@ -11,6 +11,7 @@ const instance = axios.create({
 
 export default createStore({
   state: {
+    completionResults: [],
     articles: [],
     totalPages: 1,
     pageLink: {},
@@ -62,6 +63,14 @@ export default createStore({
 
     loadingStop(state) {
       state.loading = false;
+    },
+
+    completionResults(state, data) {
+      state.completionResults = data;
+    },
+
+    resetCompletionResults(state) {
+      state.completionResults = [];
     }
   },
 
@@ -264,6 +273,21 @@ export default createStore({
         }
       }
     },
+
+    // Input search, navbar //
+    inputSearchCompletion({ commit }, data) {
+      instance.post('/core/core/input-completion/', {
+        entries: data
+      })
+      .then(response => {
+        commit('completionResults', response.data.completions);
+      })
+    },
+
+    resetSearchCompletion({ commit }) {
+      commit('resetCompletionResults');
+    },
+
   },
 
   modules: {

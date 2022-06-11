@@ -8,5 +8,6 @@ urlpatterns = [
     path('core/last_entries/', views.last_entries),
     path('core/per_categories/<str:id>/', views.per_categories),
     path('core/article_details/<str:pk>/', views.article_details),
-    path('core/send_commentary/', views.send_commentary)
+    path('core/send_commentary/', views.send_commentary),
+    path('core/input-completion/', views.input_completion),
 ]

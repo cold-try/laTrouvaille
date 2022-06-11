@@ -1,10 +1,4 @@
-from unicodedata import category
-from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
-
-
-from rest_framework.parsers import FormParser
-from rest_framework.decorators import api_view, permission_classes, parser_classes, throttle_classes
+from rest_framework.decorators import api_view, permission_classes, throttle_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
@@ -16,7 +10,7 @@ from core.paginations import CustomPagination
 
 def pagination(query_set, request, serializer):
     paginator = CustomPagination()
-    paginator.page_size = 10
+    paginator.page_size = 21
     result_page = paginator.paginate_queryset(query_set, request)
     queryset_serializer = serializer(result_page, many=True)
     paginate = paginator.get_paginated_response(queryset_serializer.data)
@@ -95,3 +89,11 @@ def get_selection(request):
     bestof_article = Article.objects.filter(our_selection_panel=True)
     paginated = pagination(bestof_article, request, ArticlerSerializer)
     return Response({'articles': paginated.data, 'fromCategory': 'Notre sélection'})
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def input_completion(request):
+    matched_articles = Article.objects.filter(nom__icontains=request.data['entries'])
+    related_articles_serializer = ArticlerSerializer(matched_articles, many=True)   
+    return Response({'completions': related_articles_serializer.data, 'fromCategory': 'Notre sélection'})

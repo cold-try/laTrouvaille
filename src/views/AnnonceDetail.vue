@@ -1,6 +1,6 @@
 <template>
 
-    <div ref="topContainer" class="container">
+    <div @click="unFocus()" ref="topContainer" class="container article-detail-container">
 
         <template v-if="this.loading">
             <div id="loading-detail-gif" class="column has-text-centered">
@@ -15,7 +15,7 @@
 
             <hr>
 
-            <div class="columns">
+            <div class="categorie-bloc is-flex">
                 <p class="dateParution" v-text="this.formatageDate(articleDetails.date)"></p>
                 <p @click="goToThread(articleDetails.categorie.id)" class="has-text-weight-bold" style="color:#485fc7;cursor:pointer"> • {{articleDetails.categorie.nom}}</p>
             </div>
@@ -32,7 +32,8 @@
             </div>
 
             <div class="has-text-centered">
-                <button class="button is-medium buyCall">Je le veux !</button>
+                <button class="button is-medium is-hidden-mobile buyCall">Je le veux !</button>
+                <button class="button is-hidden-tablet buyCall">Je le veux !</button>
             </div>
 
             <hr>
@@ -147,7 +148,8 @@
                                         {{articleDetails.price}} €
                                     </p>
                                 </template>
-                                <button class="button is-medium buyCall">Acheter maintenant</button>
+                                <button class="button is-medium is-hidden-mobile buyCall">Acheter maintenant</button>
+                                <button class="button is-hidden-tablet buyCall">Acheter maintenant</button>
                                 <p class="amz-link">Amazon.com</p>
                             </div>
                         </div>
@@ -162,7 +164,8 @@
 
         
             <template v-if="this.relatedArticles.length > 0">
-                <h3 class="title is-3">Articles similaires</h3>
+                <h3 class="title is-3 is-hidden-mobile">Articles similaires</h3>
+                <h3 class="title is-4 is-hidden-tablet">Articles similaires</h3>
                 <div class="columns">
                     <template v-for="(article, index) in this.relatedArticles">
                         <div :key="index" class="column is-3">
@@ -191,15 +194,26 @@
                         <div class="column is-9">
                             <div class="card commentary-response">
                                 <div class="columns is-justify-content-space-between">
-                                    <p class="commentary-name">
-                                        <svg class="commentary-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM11.8 6.77C13.58 6.77 15.02 8.21 15.02 9.99C15.02 11.76 13.58 13.21 11.8 13.21C10.03 13.21 8.59 11.76 8.59 9.99C8.59 8.21 10.03 6.77 11.8 6.77ZM17.93 18.08C17.48 18.53 16.97 18.92 16.43 19.25C15.14 20.05 13.62 20.5 12 20.5C10.38 20.5 8.86001 20.05 7.57001 19.25C7.03001 18.92 6.52001 18.53 6.07001 18.08V17.89C6.07001 15.84 7.74 14.17 9.78 14.17H14.22C16.26 14.17 17.93 15.84 17.93 17.89V18.08Z" fill="rgb(166, 166, 239)"/>
-                                        </svg>
-                                        {{comment.author}}
-                                    </p>
-                                    <button @click="reply()" class="button">Répondre</button>
+                                    <div class="commentary-name is-flex">
+                                        <p class="commentary-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM11.8 6.77C13.58 6.77 15.02 8.21 15.02 9.99C15.02 11.76 13.58 13.21 11.8 13.21C10.03 13.21 8.59 11.76 8.59 9.99C8.59 8.21 10.03 6.77 11.8 6.77ZM17.93 18.08C17.48 18.53 16.97 18.92 16.43 19.25C15.14 20.05 13.62 20.5 12 20.5C10.38 20.5 8.86001 20.05 7.57001 19.25C7.03001 18.92 6.52001 18.53 6.07001 18.08V17.89C6.07001 15.84 7.74 14.17 9.78 14.17H14.22C16.26 14.17 17.93 15.84 17.93 17.89V18.08Z" fill="rgb(166, 166, 239)"/>
+                                            </svg>
+                                        </p>
+                                        <p style="margin-top: 2%">
+                                            {{comment.author}}
+                                        </p>
+                                    </div>
+                                    <div class="is-hidden-mobile">
+                                        <button @click="reply()" class="button">Répondre</button>
+                                    </div>
                                 </div>
-                                <p class="commentary-date" v-text="formatageDate(comment.date, true)"></p>
+                                <div class="response-bloc-resp">
+                                    <p class="commentary-date" v-text="formatageDate(comment.date, true)"></p>
+                                    <div class="is-hidden-tablet">
+                                        <button @click="reply()" class="button is-small" style="margin-top: -11%;">Répondre</button>
+                                    </div>
+                                </div>
                                 <hr>
                                 <p>{{comment.commentary}}</p>
                             </div>
@@ -211,7 +225,8 @@
             <div ref="commentarySection" class="columns">
                 <div class="column is-1"></div>
                 <div id="commentary-section" class="column is-9">
-                    <p class="title is-4">Laisse un commentaire</p>
+                    <p class="title is-4 is-hidden-mobile">Laisse un commentaire</p>
+                    <p class="title is-5 is-hidden-tablet">Laisse un commentaire</p>
                     <textarea v-model="this.commentContent" ref="textAreaCommentary" class="textarea is-primary" placeholder="Que pensez-vous de cette Trouvaille ?"></textarea>
 
                     <br>
@@ -371,7 +386,11 @@ export default {
             this.commentEmail = null;
             this.commentWebsite = null;
         })
-      }
+      },
+
+      unFocus() {
+        this.$store.dispatch('resetSearchCompletion');
+        }
       
     }
 }
@@ -494,10 +513,9 @@ export default {
         padding:2%;
     }
 
-    .commentary-icon {
+    .commentary-icon svg {
         width: 35px;
         height: 35px;
-        margin-bottom:-4%;
     }
 
     .commentary-name {
@@ -510,5 +528,62 @@ export default {
         color:grey;
         font-size:0.8em;
         margin-top:-1%;
+    }
+
+    @media only screen and (max-width:768px) {
+        .detail-title-article {
+            font-size:1.6em;
+        }
+
+        .article-detail-container {
+            padding:3%;
+        }
+
+        .categorie-bloc {
+            margin-bottom: 2%;
+        }
+
+        .title-details {
+            font-size:1.5em;
+        }
+
+        .features-block {
+            border-right: none;
+        }
+
+        .last-call {
+            text-align: center;
+        }
+
+        .image-facultatif {
+            width: 100%;
+        }
+
+        .card {
+            margin-left: 0%!important;
+            margin-right: 0%!important;
+        }
+
+        .response-bloc-resp {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .commentary-name {
+            margin-left: 2%;
+            margin-top: 3%;
+        }
+
+        .commentary-response {
+            padding-bottom: 3%;
+        }
+
+        .price-details {
+            font-size:1.4em;
+        }
+
+        .feature-icon {
+            margin-bottom: -3%;
+        }
     }
 </style>

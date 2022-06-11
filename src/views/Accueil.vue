@@ -1,11 +1,10 @@
 <template>
 
 
-  <div ref="articlesTop" class="container">
+  <div @click="unFocus()" ref="articlesTop" class="container">
 
     <h2 class="title-top has-text-weight-bold">
       <template v-if="this.fromCategory">
-        
         <template v-if="this.fromCategory == 'Notre sélection'">
           <svg class="title-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M11.13 11.17L14.25 9.76L12.87 12.83L9.72 14.32L11.13 11.17Z" fill="#A6A6EF"/>
@@ -25,15 +24,14 @@
           </svg>
         </template>
     
-        {{this.fromCategory}}
-
+        <span class="accueil-title">{{this.fromCategory}}</span>
       </template>
 
       <template v-else>
         <svg class="title-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M19.19 5.03H16.11C15.7 5.03 15.36 5.37 15.36 5.78V8.11H11.29C11.54 7.54 11.72 6.95 11.72 6.4C11.72 4.57 10.23 3.08 8.39999 3.08C6.56999 3.08 5.08 4.57 5.08 6.4C5.08 6.94 5.26 7.54 5.52 8.11H4.81C3.26 8.11 2 9.37 2 10.92V18.11C2 19.66 3.26 20.92 4.81 20.92H19.19C20.74 20.92 22 19.66 22 18.11V7.84C22 6.29 20.74 5.03 19.19 5.03ZM8.39999 5.6C8.88999 5.6 9.28999 6 9.28999 6.49C9.28999 6.98 8.88999 7.37 8.39999 7.37C7.90999 7.37 7.52 6.98 7.52 6.49C7.52 6 7.90999 5.6 8.39999 5.6ZM10.22 19.42H4.81C4.09 19.42 3.5 18.83 3.5 18.11V14.75H6.86C7.04 14.75 7.14 14.85 7.14 14.89C7.14 15.78 7.94 16.52 8.92 16.52H9.94C10.13 16.52 10.22 16.62 10.22 16.65V19.42ZM19.19 19.42H11.72V16.65C11.72 15.75 10.92 15.02 9.94 15.02H8.92C8.74 15.02 8.64 14.92 8.64 14.89C8.64 13.99 7.84 13.25 6.86 13.25H3.5V10.92C3.5 10.2 4.09 9.61 4.81 9.61H6.35001C6.90001 10.45 7.46999 11.12 7.67999 11.35C7.85999 11.55 8.12999 11.67 8.39999 11.67C8.67999 11.67 8.95001 11.55 9.13 11.35C9.33 11.12 9.91001 10.45 10.46 9.61H15.36V16.06C15.36 16.47 15.7 16.81 16.11 16.81H19.19C19.91 16.81 20.5 17.4 20.5 18.11C20.5 18.83 19.91 19.42 19.19 19.42Z" fill="#A6A6EF"/>
         </svg>
-        Nos dernières trouvailles
+        <span class="accueil-title">Nos dernières trouvailles</span>
       </template>
     </h2>
 
@@ -53,11 +51,33 @@
             <div 
             @mouseenter="displaySocialMediaBloc(article.id)" 
             @mouseleave="hideSocialMediaBloc(article.id)"
-            class="column is-4">
+            class="column is-4 article-bloc">
               <div class="card">
                 <div class="card-image preview-article-div">
                   <figure class="image">
-                    <div :ref="'socialMediaBloc'+article.id" class="social-media is-hidden">
+                    <div :ref="'socialMediaBloc'+article.id" class="social-media is-hidden is-hidden-mobile">
+                      <a @click="socialShare('Twitter', article.id)">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M17.14 2H6.86C4.18 2 2 4.18 2 6.86V17.14C2 19.82 4.18 22 6.86 22H17.14C19.82 22 22 19.82 22 17.14V6.86C22 4.18 19.82 2 17.14 2ZM16.79 8.87C17.41 11.31 16.72 13.87 14.96 15.44C12.7 17.46 9.03 17.55 6.34 15.45C6.54 15.48 6.72001 15.49 6.88 15.48C8.15 15.43 9.01999 14.42 9.28999 14.08C8.81999 13.67 8.09 12.95 7.58 11.84C6.86 10.3 6.93 8.85 7.05 8.03C7.08 7.87 7.27999 7.81 7.39999 7.94C7.76999 8.36 8.37 8.93 9.25 9.34C10.2 9.78 11.06 9.86 11.55 9.86C11.52 8.67 12.23 7.6 13.3 7.19C14.24 6.82 15.33 7.03 16.1 7.73C16.62 7.71 17.14 7.69999 17.66 7.67999C17.37 8.07999 17.08 8.47 16.79 8.87Z" fill="rgb(29, 155, 240)"/>
+                        </svg>
+                      </a>
+
+                      <a @click="socialShare('Facebook', article.id)"
+                      style="margin-top:-25%" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M22 6.86V17.14C22 19.82 19.82 22 17.14 22H15.79V15.41C15.79 15.13 16.02 14.91 16.29 14.91H17.76C18.01 14.91 18.22 14.72 18.25 14.47L18.48 12.75C18.52 12.45 18.29 12.18 17.99 12.18H16.29C16.02 12.18 15.79 11.96 15.79 11.68V10.46C15.79 10.06 15.87 9.74 16.03 9.5C16.23 9.26 16.59 9.14 17.11 9.14H18.06C18.33 9.14 18.56 8.91 18.56 8.64V7.18C18.56 6.92 18.37 6.7 18.12 6.68C17.64 6.63 17.08 6.61 16.47 6.61C15.39 6.61 14.55 6.93 13.91 7.57C13.27 8.21 12.99 9.06 12.99 10.18V11.68C12.99 11.96 12.76 12.18 12.49 12.18H11.04C10.77 12.18 10.54 12.41 10.54 12.68V14.41C10.54 14.68 10.77 14.91 11.04 14.91H12.49C12.76 14.91 12.99 15.13 12.99 15.41V22H6.86C4.18 22 2 19.82 2 17.14V6.86C2 4.18 4.18 2 6.86 2H17.14C19.82 2 22 4.18 22 6.86Z" fill="#3b5998"/>
+                        </svg>
+                      </a>
+
+                      <a @click="socialShare('Pinterest', article.id)"
+                      style="margin-top:-25%" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM10.48 20.98C10.39 21.31 10.09 21.53 9.76001 21.53C9.69001 21.53 9.63 21.53 9.56 21.51C9.16 21.4 8.92 20.99 9.03 20.59L9.17999 20.02L11.28 12.14C11.38 11.75 11.79 11.5 12.19 11.61C12.59 11.72 12.83 12.13 12.73 12.53L11.96 15.44C12.04 15.44 12.13 15.47 12.21 15.5C12.47 15.61 12.73 15.67 12.99 15.67H13.03C14.35 15.67 15.8 14.24 16.09 12.65C16.21 11.94 16.12 11.28 15.82 10.69C15.12 9.31 13.47 8.69 12.24 8.69C10.8 8.69 9.63 9.14 8.87 9.98C8.25 10.66 7.95999 11.39 8.01999 12.16C8.07999 13.01 8.56 13.63 8.84 13.92C9.12 14.22 9.11 14.69 8.81 14.98C8.51 15.27 8.04 15.26 7.75 14.96C7.33 14.52 6.61999 13.59 6.51999 12.26C6.45999 11.45 6.63 10.22 7.75 8.97C8.79 7.82 10.39 7.19 12.24 7.19C13.97 7.19 16.16 8.06 17.16 10C17.47 10.61 17.79 11.61 17.56 12.91C17.2 14.99 15.29 17.17 13.03 17.17H12.95C12.5 17.16 12.05 17.06 11.61 16.87C11.6 16.86 11.59 16.86 11.58 16.85L10.64 20.39L10.48 20.98Z" fill="#e60023"/>
+                        </svg>
+                      </a>
+                    </div>
+
+                    <div class="social-media is-hidden-tablet">
                       <a @click="socialShare('Twitter', article.id)">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M17.14 2H6.86C4.18 2 2 4.18 2 6.86V17.14C2 19.82 4.18 22 6.86 22H17.14C19.82 22 22 19.82 22 17.14V6.86C22 4.18 19.82 2 17.14 2ZM16.79 8.87C17.41 11.31 16.72 13.87 14.96 15.44C12.7 17.46 9.03 17.55 6.34 15.45C6.54 15.48 6.72001 15.49 6.88 15.48C8.15 15.43 9.01999 14.42 9.28999 14.08C8.81999 13.67 8.09 12.95 7.58 11.84C6.86 10.3 6.93 8.85 7.05 8.03C7.08 7.87 7.27999 7.81 7.39999 7.94C7.76999 8.36 8.37 8.93 9.25 9.34C10.2 9.78 11.06 9.86 11.55 9.86C11.52 8.67 12.23 7.6 13.3 7.19C14.24 6.82 15.33 7.03 16.1 7.73C16.62 7.71 17.14 7.69999 17.66 7.67999C17.37 8.07999 17.08 8.47 16.79 8.87Z" fill="rgb(29, 155, 240)"/>
@@ -97,7 +117,14 @@
                       <div class="price-block">
                         <p class="price">{{article.price}} €</p>
                       </div>
-                      <button @click="goToDetails(article.id)" class="button buy-block-button">J'ACHETE</button>
+
+                      <div class="is-hidden-tablet">
+                        <button @click="goToDetails(article.id)" class="button buy-block-button is-default">J'ACHETE</button>
+                      </div>
+
+                      <div class="is-hidden-mobile">
+                        <button @click="goToDetails(article.id)" class="button buy-block-button">J'ACHETE</button>
+                      </div>
                     </template>
 
                     <template v-else>
@@ -236,12 +263,12 @@ export default {
 
     displaySocialMediaBloc(id) {
       var targetedElement = 'socialMediaBloc' + id;
-      this.$refs[targetedElement][0].className = 'social-media anim-enter';
+      this.$refs[targetedElement][0].className = 'social-media is-hidden-mobile anim-enter';
     },
 
     hideSocialMediaBloc(id) {
       var targetedElement = 'socialMediaBloc' + id;
-      this.$refs[targetedElement][0].className = 'social-media anim-exit';
+      this.$refs[targetedElement][0].className = 'social-media is-hidden-mobile anim-exit';
     },
 
     socialShare(rs, id) {
@@ -260,6 +287,10 @@ export default {
       }
 
       window.open(link, '_blank', 'location=yes, resizable=yes, scrollbars=yes, height='+windowHeight+',width='+windowWidth+', top='+ top + ', left=' + left);
+    },
+
+    unFocus() {
+      this.$store.dispatch('resetSearchCompletion');
     }
   }
 }
@@ -412,6 +443,54 @@ export default {
     }
     100% {
         transform: translateX(0%);
+    }
+  }
+
+  // -- MOBILE -- // 
+
+  @media only screen and (max-width:768px) {
+    .article-bloc {
+      margin-left: 2%!important;
+      margin-right: 2%!important;
+    }
+
+    .accueil-title {
+      font-size:0.85em;
+    }
+
+    .title-icon {
+      margin-bottom:-2.1%;
+      width: 40px;
+      margin-left:2%;
+      margin-right:2%;
+    }
+
+    .description-article {
+      height: 130px;
+    }
+
+    .card {
+      margin-left: 2%;
+      margin-right: 2%;
+    }
+  }
+
+  @media only screen and (max-width: 350px) {
+    .accueil-title {
+      font-size:0.70em;
+    }
+
+    .title-icon {
+      width:40px;
+      margin-bottom:-2.5%;
+    }
+
+    .description-article {
+      height: 138px;
+    }
+
+    .title {
+      font-size: 1.3em!important;
     }
   }
   

@@ -2,14 +2,14 @@
     <footer class="footer">
         <div style="margin-top:1%" class="columns">
             <div class="column is-3"></div>
-            <div class="column is-4 has-text-centered">
+            <div class="column is-4 footer-top">
                 <a @click="resetNavigation()">
                     <img id="logo-bottom" src="../assets/website-logo.png">
                 </a>
-                <p style="margin-top:2%">La Trouvaille, 2022 - France ; Amazon Affiliate Disclosure</p>
+                <p class="content-text-footer">La Trouvaille, 2022 - France ; Amazon Affiliate Disclosure</p>
             </div>
 
-            <div class="column is-2">
+            <div class="column is-2 footer-bottom">
                 <p class="title is-4" style="color:white">La plateforme</p>
                 <hr>
                 <ul class="footer-nav">
@@ -105,5 +105,34 @@ export default {
         margin-bottom:2%;
         cursor: pointer;
     }
+    
+    .content-text-footer {
+        margin-top:2%
+    }
 
+    @media only screen and (max-width:768px) {
+        .footer-top {
+            text-align: center;
+            margin-top:-5%;
+        }
+
+        .content-text-footer {
+            margin-top:4%;
+        }
+
+        .footer-bottom {
+            margin-top:15%;
+            text-align: center;
+        }
+
+        #logo-bottom {
+            border-radius:20px;
+            width: 50%!important;
+        }
+
+        .pagination-link {
+            min-width: 2em!important;
+        }
+
+    }
 </style>
