@@ -16,7 +16,7 @@ if 'VIRTUAL_ENV' in os.environ:
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build/static')]
     MEDIA_ROOT = os.path.join(BASE_DIR, 'build/static', 'img')
     MEDIA_URL = "/media/"
-    LOGIN_URL = 'connexion'
+
     SECURE_SSL_REDIRECT = False
 
 else:
@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
@@ -70,6 +71,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -166,18 +168,10 @@ USE_TZ = True
 
 ROOT_URLCONF = 'affiliation_plateform.urls'
 
-STATIC_URL = '/static/' 
-STATIC_ROOT = 'static/' 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build/static')]
-MEDIA_ROOT = os.path.join(BASE_DIR, 'build/static', 'img')
-MEDIA_URL = "/media/"
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SITE_ID = 1
-REST_SESSION_LOGIN = False 
-CSRF_COOKIE_SECURE = False
 CORS_ALLOW_CREDENTIALS = True 
