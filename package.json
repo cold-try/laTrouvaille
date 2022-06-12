@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "watch": "vue-cli-service build --watch --mode development"
+    "watch": "vue-cli-service build --watch --mode development",
+    "postinstall": "npm run build -- --mode production"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -24,7 +25,6 @@
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
-    "babel-eslint": "^10.1.0",
     "node-sass": "^6.0.1",
     "sass": "^1.52.3",
     "sass-loader": "^10.2.1",
@@ -36,12 +36,8 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
+      "plugin:vue/vue3-essential"
     ],
-    "parserOptions": {
-      "parser": "eslint-parser"
-    },
     "rules": {}
   },
   "browserslist": [
