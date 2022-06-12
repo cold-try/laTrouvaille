@@ -56,7 +56,7 @@ else:
     STATIC_URL = STATIC_HOST + '/static/' # URL qui servira les fichiers statiques
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build')]  # liste des dossiers contenants des fichiers statiques suppl. en plus du dossier static de chaque app.
 
-    DEFAULT_FILE_STORAGE = 'mn.storages.MediaStore'
+    DEFAULT_FILE_STORAGE = 'affiliation_plateform.storages.MediaStore'
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
     DATABASES = {}
