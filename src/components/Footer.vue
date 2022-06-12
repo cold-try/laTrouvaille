@@ -6,7 +6,8 @@
                 <a @click="resetNavigation()">
                     <img id="logo-bottom" src="../assets/website-logo.png">
                 </a>
-                <p class="content-text-footer">La Trouvaille, 2022 - France ; Amazon Affiliate Disclosure</p>
+                <p class="content-text-footer">La Trouvaille, 2022 - France</p>
+                <p style="margin-left:3.5%;">Amazon Affiliate Disclosure</p>
             </div>
 
             <div class="column is-2 footer-bottom">
@@ -107,7 +108,8 @@ export default {
     }
     
     .content-text-footer {
-        margin-top:2%
+        margin-top:2%;
+        margin-left:3.5%;
     }
 
     @media only screen and (max-width:768px) {

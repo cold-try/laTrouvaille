@@ -353,7 +353,7 @@ export default {
       goToThread(id) {
             this.$store.dispatch('perCategories', {'id':id, infoPage:null})
             .then({
-                this:this.$router.push({ name: 'Accueil'})
+                this:this.$router.push({ name: 'Accueil', params: { isFromThread: true }})
             });
         },
 

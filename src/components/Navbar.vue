@@ -319,7 +319,7 @@ export default {
     }
 
     .navbar-icon-menu-sec {
-        margin-top:-5%;
+        margin-top:-4%;
         margin-right:2%;
         width: 40px;
     }
@@ -331,7 +331,7 @@ export default {
     }
 
     .navbar-elem {
-        font-size:1.2em;
+        font-size:1.1em;
         font-family: 'leagueSpartan';
         color:black!important;
     }

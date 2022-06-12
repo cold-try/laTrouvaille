@@ -212,8 +212,10 @@ import { mapState } from 'vuex';
 export default {
   name: 'Accueil',
   created() {
-    if (!this.fromCategory) {
-      this.$store.dispatch('lastEntries');
+    if (!this.$route.params.isFromThread) {
+      if (!this.fromCategory) {
+        this.$store.dispatch('lastEntries');
+      }
     }
   },
   data() {
