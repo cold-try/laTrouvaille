@@ -7,7 +7,6 @@ const pages = {
   index: "src/main.js",   
 };  
 
-/*
 module.exports = {   
   publicPath: "https://dudtfwleya78z.cloudfront.net",
   outputDir: "build",
@@ -15,12 +14,12 @@ module.exports = {
   indexPath: "../templates/vue_index.html",
   pages: pages,
 };
-*/
 
-
+/*
 module.exports = {   
   publicPath: "/static/vue/", 
   outputDir: "./build/static/vue/", 
   indexPath: "../../templates/vue_index.html", 
   pages: pages,   
 };
+*/
