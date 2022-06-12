@@ -167,8 +167,8 @@
                 <h3 class="title is-3 is-hidden-mobile">Articles similaires</h3>
                 <h3 class="title is-4 is-hidden-tablet">Articles similaires</h3>
                 <div class="columns">
-                    <template v-for="(article, index) in this.relatedArticles">
-                        <div :key="index" class="column is-3">
+                    <template v-for="(article, index) in this.relatedArticles" :key="index">
+                        <div class="column is-3">
                             <a style="color:black" @click="goToDetails(article.id)">
                                 <figure class="image">
                                     <img :src="article.main_picture" class="preview-related-article" alt="Placeholder image">
@@ -188,8 +188,8 @@
             <!-- ------ COMMENTARY SECTION ------ -->
 
             <template v-if="this.comments.length > 0">
-                <template v-for="(comment, index) in this.comments">
-                    <div :key="index" class="columns">
+                <template v-for="(comment, index) in this.comments" :key="index">
+                    <div class="columns">
                         <div class="column is-1"></div>
                         <div class="column is-9">
                             <div class="card commentary-response">

@@ -40,8 +40,8 @@
 
                     <div class="navbar-dropdown">
                         <template v-if="this.categories.length > 0">
-                            <template v-for="(categorie, index) in this.categories">
-                                <a :key="index" @click="goToThread(categorie.id)" class="navbar-item navbar-line">
+                            <template v-for="(categorie, index) in this.categories" :key="index">
+                                <a @click="goToThread(categorie.id)" class="navbar-item navbar-line">
                                     • {{categorie.nom}}
                                 </a>
                             </template>
@@ -114,8 +114,8 @@
 
                     <div class="navbar-dropdown">
                         <template v-if="this.categories.length > 0">
-                            <template v-for="(categorie, index) in this.categories">
-                                <a :key="index" @click="goToThread(categorie.id)" class="navbar-item navbar-line">
+                            <template v-for="(categorie, index) in this.categories" :key="index">
+                                <a @click="goToThread(categorie.id)" class="navbar-item navbar-line">
                                     • {{categorie.nom}}
                                 </a>
                             </template>
@@ -159,10 +159,10 @@
                         <template v-if="this.completionResults.length > 0">
                             <div class="dropdown-menu" id="dropdown-menu-completion" role="menu">
                                 <div class="dropdown-content">
-                                    <template v-for="(result, index) in this.completionResults">
-                                        <a :key="index" @click="inputCategorieSelection(result.id)" class="dropdown-item completion-line">{{result.nom}}</a>
+                                    <template v-for="(result, index) in this.completionResults" :key="index">
+                                        <a @click="inputCategorieSelection(result.id)" class="dropdown-item completion-line">{{result.nom}}</a>
                                         <template v-if="this.completionResults[index+1]">
-                                            <hr :key="index" class="dropdown-divider">
+                                            <hr class="dropdown-divider">
                                         </template>
                                     </template>
                                 </div>
