@@ -11,7 +11,7 @@ vue_urls = [
 ]
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('latchopatchopa/', admin.site.urls),
     path('core/', include('core.urls')),
     path('', include(vue_urls)),
 ]
