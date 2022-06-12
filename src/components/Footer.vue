@@ -109,7 +109,7 @@ export default {
     
     .content-text-footer {
         margin-top:2%;
-        margin-left:3.5%;
+        margin-left:1%;
     }
 
     @media only screen and (max-width:768px) {

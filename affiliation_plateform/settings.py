@@ -9,7 +9,7 @@ if 'VIRTUAL_ENV' in os.environ:
     DJANGO_STATIC_HOST = 'https://dudtfwleya78z.cloudfront.net'
     TEMPLATES_ACCESS = os.path.join(BASE_DIR, 'build/templates')
     MAIN_HOST = "127.0.0.1"
-    DEBUG = False
+    DEBUG = True
 
     STATIC_URL = '/static/' 
     STATIC_ROOT = 'static/' 
@@ -35,7 +35,7 @@ else:
     DJANGO_STATIC_HOST = os.environ['DJANGO_STATIC_HOST']
     TEMPLATES_ACCESS = os.path.join(BASE_DIR, 'templates')
     MAIN_HOST = os.environ['MAIN_HOST']
-    DEBUG = True
+    DEBUG = False
 
     AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
     AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
