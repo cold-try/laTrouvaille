@@ -7,7 +7,7 @@
                     <img id="logo-bottom" src="../assets/website-logo.png">
                 </a>
                 <p class="content-text-footer">La Trouvaille, 2022 - France</p>
-                <p style="margin-left:3.5%;">Amazon Affiliate Disclosure</p>
+                <p style="margin-left:1%;">Amazon Affiliate Disclosure</p>
             </div>
 
             <div class="column is-2 footer-bottom">
