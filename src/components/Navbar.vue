@@ -4,7 +4,7 @@
 
             <!-- DESKTOP MODE -->
             <a @click="resetNavigation()" class="is-hidden-mobile">
-                <img src="../assets/website-logo.png">
+                <img src="../assets/website-logo.png" style="width:80%">
             </a>
             <!-- MOBILE MODE -->
             <a @click="resetNavigation()" class="is-hidden-tablet">
