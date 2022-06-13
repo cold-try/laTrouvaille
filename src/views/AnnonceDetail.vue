@@ -32,8 +32,8 @@
             </div>
 
             <div class="has-text-centered">
-                <button class="button is-medium is-hidden-mobile buyCall">Je le veux !</button>
-                <button class="button is-hidden-tablet buyCall">Je le veux !</button>
+                <a class="button is-medium is-hidden-mobile buyCall" :href="articleDetails.buy_link" target="_blank">Je le veux !</a>
+                <a class="button is-hidden-tablet buyCall" :href="articleDetails.buy_link" target="_blank">Je le veux !</a>
             </div>
 
             <hr>
@@ -148,8 +148,8 @@
                                         {{articleDetails.price}} €
                                     </p>
                                 </template>
-                                <button class="button is-medium is-hidden-mobile buyCall">Acheter maintenant</button>
-                                <button class="button is-hidden-tablet buyCall">Acheter maintenant</button>
+                                <a class="button is-medium is-hidden-mobile buyCall" :href="articleDetails.buy_link" target="_blank">Acheter maintenant</a>
+                                <a class="button is-hidden-tablet buyCall" :href="articleDetails.buy_link" target="_blank">Acheter maintenant</a>
                                 <p class="amz-link">Amazon.com</p>
                             </div>
                         </div>
@@ -423,6 +423,12 @@ export default {
         object-fit: contain;
         background-position: center center;
         border-radius: 20px;
+    }
+
+    .image-facultatif {
+        max-width: 585px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .detail-description {
