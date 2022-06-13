@@ -15,7 +15,7 @@
 
             <hr>
 
-            <div class="categorie-bloc is-flex">
+            <div class="categorie-bloc is-flex" style="margin-bottom:2%">
                 <p class="dateParution" v-text="this.formatageDate(articleDetails.date)"></p>
                 <p @click="goToThread(articleDetails.categorie.id)" class="has-text-weight-bold" style="color:#485fc7;cursor:pointer"> • {{articleDetails.categorie.nom}}</p>
             </div>
